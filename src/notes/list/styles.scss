@@ -1,7 +1,7 @@
 .list {
   overflow: auto;
   list-style-type: none;
-  height: 80vh;
+  height: 85vh;
   padding: 10px 0 0 0;
   margin: 0;
 }
@@ -15,9 +15,9 @@
 
 .list > li:hover {
   cursor: pointer;
-  border-bottom:1px solid #fff;
+  text-decoration-line: underline;
 }
 
 .selected {
-  border-bottom:1px solid #fff;
+  text-decoration-line: underline;
 }

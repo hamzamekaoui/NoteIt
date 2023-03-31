@@ -1,3 +1,5 @@
+import AddIcon from "../../assets/icon-a.svg";
+import DeleteIcon from "../../assets/icon-d.svg";
 import "./styles.scss";
 
 type Props = {
@@ -15,14 +17,14 @@ const Actions = ({ addNoteHandler, deleteNoteHandler }: Props) => {
   };
 
   return (
-    <>
+    <div className="menu">
       <button className="button" onClick={onClickAdd}>
-        Add
+        <img src={AddIcon} alt="Add" />
       </button>
       <button className="button" onClick={onClickDelete}>
-        Delete
+        <img src={DeleteIcon} alt="Delete" />
       </button>
-    </>
+    </div>
   );
 };
 

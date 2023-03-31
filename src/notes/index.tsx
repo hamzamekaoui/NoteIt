@@ -5,13 +5,15 @@ import NoteList from "./list";
 import Actions from "./actions";
 import "./styles.scss";
 
-export const NOTES_KEY = "notes";
+const DEFAULT_TITLE = "Give your note a title...";
+const DEFAULT_CONTENT = "Write down...";
+const NOTES_KEY = "notes";
 
-export const generateDefaultNote = (): Note => {
+const generateDefaultNote = (): Note => {
   const note = new Object({
     id: crypto.randomUUID(),
-    title: "Type your title...",
-    content: "Type your content...",
+    title: DEFAULT_TITLE,
+    content: DEFAULT_CONTENT,
     lastEdited: new Date().toUTCString(),
   }) as Note;
   return note;
@@ -27,7 +29,6 @@ const Notes = () => {
   const [currentNoteId, setCurrentNoteId] = useState(() => notes[0].id);
 
   useEffect(() => {
-    console.log("effect");
     window.localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
   }, [notes]);
 
@@ -37,7 +38,12 @@ const Notes = () => {
   };
 
   const deleteNote = () => {
-    setNotes(notes.filter((note) => note.id !== currentNoteId));
+    let filteredNotes = notes.filter((note) => note.id !== currentNoteId);
+    if (filteredNotes.length === 0) {
+      filteredNotes = [generateDefaultNote()];
+    }
+    setNotes(filteredNotes);
+    setCurrentNoteId(filteredNotes[0].id);
   };
 
   const updateContent = (content: string) => {
