@@ -1,0 +1,28 @@
+.editor {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 45px auto auto 25px;
+  grid-template-areas: 
+    "header"
+    "line"
+    "content"
+    "footer";
+}
+
+.editor > * {
+  margin: 5px;
+}
+
+.editor > textarea {
+  resize: none;
+  height: 80vh;
+}
+
+.editor > input {
+  font-weight: bolder;
+}
+
+.editor > i {
+  text-align: end;
+  font-size: x-small;
+}
