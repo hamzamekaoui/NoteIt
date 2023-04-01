@@ -4,8 +4,3 @@ export type Note = {
   content: string;
   lastEdited: string;
 };
-
-export type NoteCollection = {
-  notes: Note[];
-  current: string;
-}
