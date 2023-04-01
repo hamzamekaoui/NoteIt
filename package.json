@@ -1,7 +1,7 @@
 {
   "name": "noteit",
   "private": true,
-  "homepage": "https://hamzamekaoui.github.io/noteit",
+  "homepage": "https://hamzamekaoui.github.io/NoteIt",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
