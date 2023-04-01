@@ -20,10 +20,19 @@ const generateDefaultNote = (): Note => {
 };
 
 const Notes = () => {
-  console.log("re-render");
   const [notes, setNotes] = useState<Note[]>(() => {
-    const currentNote = window.localStorage.getItem(NOTES_KEY);
-    return currentNote ? JSON.parse(currentNote) : [generateDefaultNote()];
+    let currentNotes;
+    const notesJSON = window.localStorage.getItem(NOTES_KEY);
+    if (notesJSON) {
+      try {
+        currentNotes = JSON.parse(notesJSON);
+      } catch (error) {
+        currentNotes = [generateDefaultNote()];
+      }
+    } else {
+      currentNotes = [generateDefaultNote()];
+    }
+    return currentNotes;
   });
 
   const [currentNoteId, setCurrentNoteId] = useState(() => notes[0].id);
