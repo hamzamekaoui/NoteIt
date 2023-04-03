@@ -9,4 +9,4 @@ NoteIt is an application I enjoyed building throughout my React learning journey
 Credits to:
 
 * [Slate](https://github.com/ianstormtaylor/slate) for its rich text editor.
-* [Google Fonts](https://fonts.googleapis.com) for the font and icons.
+* [Google Fonts](https://fonts.google.com/) for the font and icons.
