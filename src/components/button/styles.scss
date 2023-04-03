@@ -1,0 +1,13 @@
+.button {
+  cursor: pointer;
+  color: darkgray;
+  user-select: none;
+}
+
+.active {
+  color: white;
+}
+
+.hover-able:hover {
+  color: white;
+}

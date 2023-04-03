@@ -2,11 +2,12 @@
   overflow: auto;
   list-style-type: none;
   height: 85vh;
-  padding: 10px 0 0 0;
+  padding: 0;
   margin: 0;
 }
 
 .list > li {
+  min-height: 17px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -15,9 +16,9 @@
 
 .list > li:hover {
   cursor: pointer;
-  text-decoration-line: underline;
+  background-color: #4b606a;
 }
 
 .selected {
-  text-decoration-line: underline;
+  background-color: #4b606a;
 }

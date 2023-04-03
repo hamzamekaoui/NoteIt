@@ -1,8 +1,0 @@
-.bar {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto 60px;
-  grid-template-areas:
-    "list"
-    "actions";
-}

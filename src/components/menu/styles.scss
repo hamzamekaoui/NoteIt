@@ -1,0 +1,6 @@
+.menu > * {
+  display: inline-block;
+}
+.menu > * + * {
+  margin-left: 15px;
+}

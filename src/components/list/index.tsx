@@ -1,4 +1,4 @@
-import { Note } from "../types";
+import { Note } from "../../types";
 import "./styles.scss";
 
 type Props = {
@@ -7,18 +7,17 @@ type Props = {
   updateCurrentNoteIdHandler: Function;
 };
 
-const NoteList = ({
+export const Tab = ({
   notes,
   currentNoteId,
   updateCurrentNoteIdHandler,
 }: Props) => {
-  const selectedClassName = (id: string) =>
-    id === currentNoteId ? "selected" : "";
+  const isSelected = (id: string): boolean => id === currentNoteId;
   return (
     <ul className="list">
       {notes.map((note) => (
         <li
-          className={selectedClassName(note.id)}
+          {...(isSelected(note.id) ? { className: "selected" } : {})}
           key={note.id}
           onClick={() => updateCurrentNoteIdHandler(note.id)}
         >
@@ -28,5 +27,3 @@ const NoteList = ({
     </ul>
   );
 };
-
-export default NoteList;

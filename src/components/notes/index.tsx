@@ -1,20 +1,28 @@
-import { useEffect, useState } from "react";
-import { Note } from "./types";
-import NoteEditor from "./editor";
-import NoteList from "./list";
-import Actions from "./actions";
+import { ChangeEvent, useEffect, useState } from "react";
+import { Note } from "../../types";
+import { Tab } from "../list";
+import { Descendant } from "slate";
+import { Toolbar } from "../toolbar";
+import { Button } from "../button";
+import { Icon } from "../icon";
+import RichTextEditor from "../editor";
 import "./styles.scss";
 
 const DEFAULT_TITLE = "Give your note a title...";
-const DEFAULT_CONTENT = "Write down...";
+const DEFAULT_CONTENT = [
+  {
+    type: "paragraph",
+    children: [{ text: "" }],
+  },
+];
 const NOTES_KEY = "notes";
+const CONTENT_PLACEHOLDER = "Write down your note..."
 
 const generateDefaultNote = (): Note => {
   const note = new Object({
     id: crypto.randomUUID(),
     title: DEFAULT_TITLE,
     content: DEFAULT_CONTENT,
-    lastEdited: new Date().toUTCString(),
   }) as Note;
   return note;
 };
@@ -55,24 +63,22 @@ const Notes = () => {
     setCurrentNoteId(filteredNotes[0].id);
   };
 
-  const updateContent = (content: string) => {
+  const updateContent = (content: Descendant[]) => {
     setNotes(
       notes.map((note) => {
         if (note.id === currentNoteId) {
           note.content = content;
-          note.lastEdited = new Date().toUTCString();
         }
         return note;
       })
     );
   };
 
-  const updateTitle = (title: string) => {
+  const updateTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setNotes(
       notes.map((note) => {
         if (note.id === currentNoteId) {
-          note.title = title;
-          note.lastEdited = new Date().toUTCString();
+          note.title = event.target.value;
         }
         return note;
       })
@@ -88,19 +94,33 @@ const Notes = () => {
 
   return (
     <>
-      <div className="bar">
-        <NoteList
+      <aside className="bar">
+        <Tab
           notes={notes}
           currentNoteId={currentNoteId}
           updateCurrentNoteIdHandler={updateCurrentNoteId}
         />
-        <Actions addNoteHandler={addNote} deleteNoteHandler={deleteNote} />
+        <Toolbar className="actions">
+          <Button hover onMouseDown={addNote}>
+            <Icon>add_box</Icon>
+          </Button>
+          <Button hover onMouseDown={deleteNote}>
+            <Icon>delete</Icon>
+          </Button>
+        </Toolbar>
+      </aside>
+      <div className="editor">
+        <input onChange={updateTitle} value={currentNote.title}></input>
+        <hr />
+        <div>
+          <RichTextEditor
+            key={currentNote.id}
+            placeholder={CONTENT_PLACEHOLDER}
+            value={currentNote.content}
+            updateContentHandler={updateContent}
+          />
+        </div>
       </div>
-      <NoteEditor
-        note={currentNote}
-        updateTitleHandler={updateTitle}
-        updateContentHandler={updateContent}
-      />
     </>
   );
 };

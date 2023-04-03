@@ -1,0 +1,22 @@
+.actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor {
+  max-width: 65em;
+  padding-left: 10px;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto 60px;
+  grid-template-areas:
+    "list"
+    "actions";
+  position: sticky;
+  top: 10px;
+  align-self: start;
+}
